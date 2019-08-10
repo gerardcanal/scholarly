@@ -240,7 +240,7 @@ class Publication(object):
 class Author(object):
     """Returns an object for a single author"""
     def __init__(self, __data):
-        if isinstance(__data, str):
+        if isinstance(__data, str) or isinstance(__data, unicode):
             self.id = __data
         else:
             self.id = re.findall(_CITATIONAUTHRE, __data('a')[0]['href'])[0]
@@ -347,4 +347,3 @@ def search_author_custom_url(url):
     URL should be of the form '/citation?q=...'"""
     soup = _get_soup(_HOST+url)
     return _search_citation_soup(soup)
-
